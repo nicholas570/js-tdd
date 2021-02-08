@@ -1,35 +1,28 @@
 const assert = require('assert');
+const capitalizeFirstLetters = require('../capitalizeFirstLetters');
 
-// WRITE THE ACTUAL FUNCTION HERE
+describe('capitalizeFirstLetters', () => {
+  it('is a function accepting one argument', () => {
+    assert.strictEqual(typeof capitalizeFirstLetters, 'function');
+    assert.strictEqual(capitalizeFirstLetters.length, 1);
+  });
 
-const capitalizeFirstLetters = (string) => {
-  if (string.length > 0) {
-    const testArr = string.split(' ');
-    const capitalized = testArr.map(
-      (word) => word.charAt(0).toUpperCase() + word.substring(1)
+  it('tranforms javascript correctly', () => {
+    assert.strictEqual(capitalizeFirstLetters('javaScript'), 'JavaScript');
+  });
+
+  it('tranforms javascript is awesome correctly', () => {
+    assert.strictEqual(
+      capitalizeFirstLetters('javaScript is awesome'),
+      'JavaScript Is Awesome'
     );
-    return capitalized.join(' ');
-  }
-  return '';
-};
+  });
 
-// Check that capitalizeFirst is a function
-assert.strictEqual(typeof capitalizeFirstLetters, 'function');
+  it('transforms a letter correctly', () => {
+    assert.strictEqual(capitalizeFirstLetters('z'), 'Z');
+  });
 
-// Check that capitalizeFirst accepts one argument
-assert.strictEqual(capitalizeFirstLetters.length, 1);
-
-// Check that capitalizeFirst transforms javaScript correctly
-assert.strictEqual(capitalizeFirstLetters('javaScript'), 'JavaScript');
-
-// Check that capitalizeFirst transforms javaScript is awesome correctly
-assert.strictEqual(
-  capitalizeFirstLetters('javaScript is awesome'),
-  'JavaScript Is Awesome'
-);
-
-// Check that it works for a 1-character string
-assert.strictEqual(capitalizeFirstLetters('z'), 'Z');
-
-// Check that it works for an empty string
-assert.strictEqual(capitalizeFirstLetters(''), '');
+  it('returns an empty string', () => {
+    assert.strictEqual(capitalizeFirstLetters(''), '');
+  });
+});
